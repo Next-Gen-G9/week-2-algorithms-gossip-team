@@ -101,6 +101,16 @@ void returnBook(std::vector<Book>& books) {
     // 4. If valid, check if the book is NOT available.
     // 5. If it's not available, set 'isAvailable' to true.
     // 6. Print confirmation or error messages.
+    int bookId;
+    std::cout<< "Enter ID of the book to return:";
+    std::cin>> bookId;
+    Book* bookPtr = findBookById(books, bookId);
+    if (bookPtr){
+        if(bookPtr->isAvailable){
+            bookPtr->isAvailable = true;
+            std::cout<< "Book'" << bookPtr->title 
+        }
+    }
 }
 
 // STUDENT TASK: Implement the Bubble Sort algorithm.
@@ -128,4 +138,5 @@ void binarySearchByTitle(const std::vector<Book>& books) {
     //    - If the mid book's title is less than the search term, set 'low = mid + 1'.
     //    - Otherwise, set 'high = mid - 1'.
     // 6. If the loop finishes without finding the book, print a "not found" message.
+
 }
