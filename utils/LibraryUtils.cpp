@@ -69,7 +69,7 @@ void displayAllBooks(const std::vector<Book>& books) {
     // 1. Print a formatted header for the book list.
     // 2. Create a loop that iterates through the entire 'books' vector.
     // 3. Inside the loop, print the details of each book (id, title, author, availability).
-}
+}//Theany do
 
 // STUDENT TASK: Implement findBookById to return a pointer.
 // This exercise covers: functions, pointers (&)
@@ -90,7 +90,7 @@ void checkOutBook(std::vector<Book>& books) {
     // 4. If it's a valid pointer, check if the book 'isAvailable'.
     // 5. If it is available, set its 'isAvailable' status to false (Hint: use -> or (*). ).
     // 6. Print confirmation or error messages for each case (not found, already checked out, success).
-}
+}//Nary do
 
 // STUDENT TASK: Implement returnBook (similar to checkOutBook).
 // This exercise covers: functions, pointers (*)
