@@ -55,12 +55,23 @@ std::vector<Book> loadBooks() {
 // This exercise covers: functions, std::vector, std::string
 void addBook(std::vector<Book>& books) {
     // 1. Create a new 'Book' object.
+    Book newbook;
     // 2. Set its 'id'. A simple way is to use the current size of the vector: books.size() + 1.
+    newbook.id=books.size()+1;
+       
     // 3. Prompt the user to "Enter title: " and read the input into the book's 'title'.
+     std::cout<<"Enter title: ";
+     std::cin, newbook.id;
     // 4. Prompt the user to "Enter author: " and read the input into the book's 'author'.
+    std::cout<<"Enter author: ";
+    std::cin, newbook.author;
     // 5. Set the book's 'isAvailable' status to true.
+    newbook.isAvailable= true;
+
     // 6. Add the new book object to the 'books' vector using push_back().
+    books.push_back(newbook);
     // 7. Print a confirmation message.
+    std::cout<<"Book add successfully! (ID: "<<newbook.id<<")" <<std::endl;
 }
 
 // STUDENT TASK: Implement the displayAllBooks function.
@@ -69,7 +80,7 @@ void displayAllBooks(const std::vector<Book>& books) {
     // 1. Print a formatted header for the book list.
     // 2. Create a loop that iterates through the entire 'books' vector.
     // 3. Inside the loop, print the details of each book (id, title, author, availability).
-}
+}//Theany do
 
 // STUDENT TASK: Implement findBookById to return a pointer.
 // This exercise covers: functions, pointers (&)
@@ -78,6 +89,12 @@ Book* findBookById(std::vector<Book>& books, int id) {
     // 2. Inside the loop, check if the 'id' of the current book matches the 'id' parameter.
     // 3. If it matches, return the memory address of that book object. (Hint: use the '&' operator).
     // 4. If the loop finishes and no book is found, return 'nullptr'.
+    while (const auto& book : books) {
+        if (book.id == id) {
+            return &book;
+        }
+    }
+    
     return nullptr; // Placeholder
 }
 
@@ -90,17 +107,47 @@ void checkOutBook(std::vector<Book>& books) {
     // 4. If it's a valid pointer, check if the book 'isAvailable'.
     // 5. If it is available, set its 'isAvailable' status to false (Hint: use -> or (*). ).
     // 6. Print confirmation or error messages for each case (not found, already checked out, success).
+    int bookId;
+    std::cout << "Enter ID of the book to check out: ";
+    std::cin >> bookId;
+    Book* bookPtr = findBookById(books, bookId);
+    if (bookPtr) {     
+        if (bookPtr->isAvailable) {
+            bookPtr->isAvailable = false;
+            std::cout << "Book '" << bookPtr->title << "' checked out successfully." << std::endl;
+        } else {
+            std::cout << "Book '" << bookPtr->title << "' is already checked out." << std::endl;
+        }
+    }
+    else {
+        std::cout << "Book with ID " << bookId << " not found." << std::endl;
+    }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear input buffer
+    std::cout << "Press Enter to continue..." << std::endl;
+    std::cin.get(); // Wait for user to press Enter
+   
 }
 
 // STUDENT TASK: Implement returnBook (similar to checkOutBook).
 // This exercise covers: functions, pointers (*)
 void returnBook(std::vector<Book>& books) {
     // 1. Prompt for the book ID to return.
+    // 2. Use findBookById() to get the book pointer.
     // 2. Get the book pointer using findBookById().
     // 3. Check if the pointer is valid.
     // 4. If valid, check if the book is NOT available.
     // 5. If it's not available, set 'isAvailable' to true.
     // 6. Print confirmation or error messages.
+    int bookId;
+    std::cout<< "Enter ID of the book to return:";
+    std::cin>> bookId;
+    Book* bookPtr = findBookById(books, bookId);
+    if (bookPtr){
+        if(bookPtr->isAvailable){
+            bookPtr->isAvailable = true;
+            std::cout<< "Book'" << bookPtr->title 
+        }
+    }
 }
 
 // STUDENT TASK: Implement the Bubble Sort algorithm.
@@ -128,4 +175,5 @@ void binarySearchByTitle(const std::vector<Book>& books) {
     //    - If the mid book's title is less than the search term, set 'low = mid + 1'.
     //    - Otherwise, set 'high = mid - 1'.
     // 6. If the loop finishes without finding the book, print a "not found" message.
+
 }
